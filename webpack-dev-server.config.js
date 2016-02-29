@@ -22,7 +22,7 @@ var config = {
     devtool: 'eval',
     hot: true,        //Live-reload
     inline: true,
-    port: 3000        //Port Number
+    port: process.env.EXPRESS_PORT || 3000        //Port Number
   },
   devtool: 'eval',
   output: {
@@ -56,6 +56,15 @@ var config = {
         test: /\.(js|jsx)$/,  //All .js and .jsx files
         loaders: ['react-hot', 'babel'], //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath]
+      },{
+        test: /\.css$/,
+        loader: "style!css",
+        include: [
+          path.join(__dirname, "app/admin/assets/css"),
+          path.join(__dirname, "app/bank/assets/css"),
+          path.join(__dirname, "app/borrower/assets/css"),
+          path.join(__dirname, "node_modules"),
+        ],
       }
     ]
   },
